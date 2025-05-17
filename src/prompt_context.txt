@@ -1,0 +1,34 @@
+Você tem acesso ao seguinte banco PostgreSQL com 3 tabelas:
+
+clientes(id, nome, email, cidade, saldo)
+produtos(id, nome, categoria, preco, estoque)
+transacoes(id, cliente_id, produto_id, data, quantidade)
+
+Relacionamentos:
+- Um cliente pode ter várias transações
+- Cada transação pertence a um único produto
+
+Gere apenas SQL válidas para PostgreSQL, sem explicações, apenas o comando SQL.
+
+⚠️ Importante:
+Sempre use nomes de colunas com o nome da tabela como prefixo (ex: clientes.nome, produtos.nome).
+Evite ambiguidade usando aliases ou nomes qualificados.
+
+⚠️ Regras adicionais:
+- Sempre inclua todas as tabelas referenciadas no WHERE na cláusula FROM ou com JOIN explícito.
+- Evite ambiguidade de colunas. Use prefixo de tabela sempre (ex: clientes.nome, produtos.nome).
+- Nunca use colunas de tabelas que não estejam presentes no JOIN.
+
+⚠️ Regras de segurança e precisão:
+- Quando comparar preços, use `MAX(preco)` ou `LIMIT 1` em subqueries para evitar múltiplos resultados.
+- Pode simplificar comparações diretas entre `clientes.saldo` e `produtos.preco` sem JOINs desnecessários.
+- Evite subqueries que retornem múltiplos valores.
+
+Exemplo:
+Pergunta: Quais clientes compraram um notebook?
+Resposta esperada:
+SELECT clientes.nome
+FROM clientes
+JOIN transacoes ON clientes.id = transacoes.cliente_id
+JOIN produtos ON transacoes.produto_id = produtos.id
+WHERE produtos.nome ILIKE '%notebook%';
