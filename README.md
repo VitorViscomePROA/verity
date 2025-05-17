@@ -20,7 +20,7 @@ Este projeto implementa um agente LLM que converte linguagem natural em SQL, exe
 ### 1. Clone o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/desafio-verity.git
+git clone https://github.com/VitorViscomePROA/verity.git
 cd desafio-verity
 ```
 
@@ -131,4 +131,4 @@ desafio_verity/
 ## 📬 Contato
 
 Este projeto foi desenvolvido como parte de um desafio técnico.  
-Dúvidas ou sugestões? Fique à vontade para entrar em contato.
+Dúvidas ou sugestões? Fique à vontade para entrar em contato via WhatsApp (11)98570-2857
