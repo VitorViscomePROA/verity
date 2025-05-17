@@ -12,4 +12,4 @@ engine = create_engine(DATABASE_URL)
 
 def executar_sql(query: str) -> pd.DataFrame:
     with engine.connect() as conn:
-        return pd.read_sql_query(sql=text(query), con=conn)  # ✅ usa text() para evitar parsing errado
+        return pd.read_sql_query(sql=text(query), con=conn)

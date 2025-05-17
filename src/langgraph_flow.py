@@ -6,6 +6,15 @@ from db import executar_sql
 from typing import TypedDict
 from yaspin import yaspin
 
+import sqlparse
+
+def is_safe_sql(query: str) -> bool:
+    parsed = sqlparse.parse(query)
+    if not parsed:
+        return False
+    stmt = parsed[0]
+    return stmt.get_type().upper() == "SELECT"
+
 # === SCHEMA DO ESTADO ===
 class GraphState(TypedDict, total=False):
     pergunta: str
@@ -38,14 +47,12 @@ def gerar_sql(state: GraphState) -> GraphState:
     return {"sql": sql}
 
 def executar(state: GraphState) -> GraphState:
+    sql_str = state["sql"]
+    if not is_safe_sql(sql_str):
+        return {"erro": "Query inválida ou potencialmente perigosa. Apenas SELECTs são permitidas."}
     try:
         with yaspin(text="⏳ Executando consulta no banco...", color="yellow"):
-            sql_final = state["sql"]
-            print(f"\n🧪 DEBUG: tipo da SQL recebida => {type(sql_final)}")
-            print(f"🧪 Conteúdo: {sql_final}")
-
-            df = executar_sql(sql_final)
-
+            df = executar_sql(sql_str)
         return {"resultado": df.to_string(index=False)}
     except Exception as e:
         return {"erro": str(e)}

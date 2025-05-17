@@ -15,6 +15,18 @@ Este projeto implementa um agente LLM que converte linguagem natural em SQL, exe
 
 ---
 
+## 🛠 Comandos via Makefile
+
+Você pode usar os seguintes comandos para facilitar o uso do projeto:
+
+```bash
+make venv        # Cria e configura o ambiente virtual #
+make db-up       # Sobe o banco PostgreSQL via Docker #
+make ollama      # Inicia o modelo local mistral #
+make run         # Executa o agente conversacional #
+make test-db     # Testa conexão com o banco #
+
+
 ## 🚀 Como rodar o projeto
 
 ### 1. Clone o repositório

@@ -1,18 +1,14 @@
-version: '3.8'
+version: "3.8"
 
 services:
-  postgres:
+  db:
     image: postgres:15
     container_name: desafio_sql_agent_db
-    restart: always
     ports:
       - "5432:5432"
     environment:
+      POSTGRES_DB: desafio
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: desafio
     volumes:
       - ./postgres-init:/docker-entrypoint-initdb.d
-
-volumes:
-  postgres_data:

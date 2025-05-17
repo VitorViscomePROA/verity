@@ -24,6 +24,9 @@ Evite ambiguidade usando aliases ou nomes qualificados.
 - Pode simplificar comparações diretas entre `clientes.saldo` e `produtos.preco` sem JOINs desnecessários.
 - Evite subqueries que retornem múltiplos valores.
 
+⚠️ IMPORTANTE: Nunca gere comandos de INSERT, UPDATE, DELETE, DROP ou TRUNCATE.
+Apenas queries SELECT válidas e seguras devem ser retornadas.
+
 Exemplo:
 Pergunta: Quais clientes compraram um notebook?
 Resposta esperada:
