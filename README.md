@@ -15,18 +15,6 @@ Este projeto implementa um agente LLM que converte linguagem natural em SQL, exe
 
 ---
 
-## 🛠 Comandos via Makefile
-
-Você pode usar os seguintes comandos para facilitar o uso do projeto:
-
-```bash
-make venv        # Cria e configura o ambiente virtual #
-make db-up       # Sobe o banco PostgreSQL via Docker #
-make ollama      # Inicia o modelo local mistral #
-make run         # Executa o agente conversacional #
-make test-db     # Testa conexão com o banco #
-
-
 ## 🚀 Como rodar o projeto
 
 ### 1. Clone o repositório
@@ -57,8 +45,6 @@ docker-compose up -d
 
 O script de inicialização (`postgres-init`) vai criar as tabelas e dados automaticamente.
 
----
-
 ### 5. Inicie o modelo local via Ollama
 
 ```bash
@@ -66,8 +52,6 @@ ollama run mistral
 ```
 
 Certifique-se de que o Ollama esteja instalado: [https://ollama.com/download](https://ollama.com/download)
-
----
 
 ### 6. Execute o agente
 
@@ -80,6 +64,22 @@ Digite uma pergunta como:
 ```
 quem comprou smartphones?
 ```
+
+---
+
+## 🛠 Comandos via Makefile
+
+Você pode usar os seguintes comandos para facilitar o uso do projeto:
+
+```bash
+make venv        # Cria e configura o ambiente virtual
+make db-up       # Sobe o banco PostgreSQL via Docker
+make ollama      # Inicia o modelo local mistral
+make run         # Executa o agente conversacional
+make test-db     # Testa conexão com o banco
+```
+
+> 💡 Obs: no Windows, execute esses comandos usando Git Bash ou instale o `make` via Chocolatey.
 
 ---
 
@@ -113,6 +113,7 @@ Bruno Lima
 - O fluxo de execução é gerenciado via `LangGraph` com estados:
   - `gerar_sql`
   - `executar_sql`
+- Queries perigosas são bloqueadas com validação usando `sqlparse`
 - Todo processamento ocorre localmente com o modelo Mistral via Ollama
 
 ---
@@ -124,6 +125,7 @@ desafio_verity/
 ├── docker-compose.yml
 ├── postgres-init/
 ├── requirements.txt
+├── Makefile
 ├── src/
 │   ├── db.py
 │   ├── langgraph_flow.py
@@ -143,4 +145,4 @@ desafio_verity/
 ## 📬 Contato
 
 Este projeto foi desenvolvido como parte de um desafio técnico.  
-Dúvidas ou sugestões? Fique à vontade para entrar em contato via WhatsApp (11)98570-2857
+Dúvidas ou sugestões? Fique à vontade para entrar em contato via WhatsApp: **(11) 98570-2857**
